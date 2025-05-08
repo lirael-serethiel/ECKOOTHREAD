@@ -71,17 +71,11 @@
       margin-top: 1rem;
       font-size: 1.2rem;
     }
-    .visual-placeholder {
+    .visual-placeholder img {
       width: 100%;
-      height: 200px;
-      background: linear-gradient(135deg, #d4ba77, #bbb);
       border-radius: 12px;
       margin-top: 1rem;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: #333;
-      font-weight: bold;
+      box-shadow: 0 0 12px rgba(0, 0, 0, 0.2);
     }
     .shop-items {
       display: flex;
@@ -138,7 +132,9 @@
     <section class="output">
       <h2 class="section-title">Resonance Reflection</h2>
       <div class="response-message" id="message">(Message will appear here)</div>
-      <div class="visual-placeholder">Visual Resonance Field Placeholder</div>
+      <div class="visual-placeholder">
+        <img id="resonanceImage" src="https://via.placeholder.com/800x300.png?text=Your+Resonance+Field" alt="Your Resonance Field" />
+      </div>
     </section>
 
     <section class="shop">
@@ -168,10 +164,15 @@
   </footer>
 
   <script>
+    const imageLibrary = {
+      "cosmic": "https://www.dropbox.com/scl/fi/b784rhjh8nfj3ymzdskhw/Cosmic-Light-Trails_-Warm-vs-Cool-4.png?rlkey=69iuoscnczgcywr4jfyg167z0&raw=1"
+    };
+
     function reflectInput() {
-      const name = document.getElementById("userName").value.trim();
+      const name = document.getElementById("userName").value.trim().toLowerCase();
       const input = document.getElementById("userInput").value.toLowerCase();
       let message = "You are in a field of transition. Trust the shape you’re becoming.";
+      let imagePath = imageLibrary[name] || "https://via.placeholder.com/800x300.png?text=Receiving+Your+Resonance...";
 
       if (input.includes("confused") || input.includes("lost")) {
         message = `"${name}, you are not confused. You are surrounded by noise."`;
@@ -188,6 +189,7 @@
       }
 
       document.getElementById("message").innerText = message;
+      document.getElementById("resonanceImage").src = imagePath;
     }
   </script>
 </body>
